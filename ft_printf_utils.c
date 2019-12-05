@@ -51,9 +51,11 @@ int		get_len_nb(long long nb, int base)
 	int			len;
 	long long	pow;
 	
-	
 	len = 0;
 	pow = 1;
+	if (nb < 0)
+		len++;
+	nb = (nb < 0 ? -nb : nb);
 	if (nb == 0)
 		return (1);
 	while (nb / pow)

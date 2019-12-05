@@ -2,8 +2,10 @@
 
 int	print_convert(t_flags *flags, va_list args, char c)
 {
-	if (c == 'd' || c == 'i' || c == 'u')
+	if (c == 'd' || c == 'i')
 		return (print_nb(flags, va_arg(args, int)));
+	if (c == 'u')
+		return (print_nb(flags, va_arg(args, unsigned int)));
 	if (c == 'c')
 		return (print_char(flags, va_arg(args, int)));
 	if (c == 's')

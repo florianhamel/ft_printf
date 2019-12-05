@@ -32,7 +32,7 @@ int			ft_strlen(char *str);
 int			putchar_len(char c);
 int			putstr_len(char *str, int n);
 int			putnbr_len(long long nb);
-int			puthexa_len(long long nb, char c);
+int			puthexa_len(long nb, char c);
 
 // ft_atoi.c
 long long	ft_atoi(char *str);
@@ -43,10 +43,11 @@ int			get_nb_convert(char *str, va_list args);
 void		fill_flags(char *convert_str, t_flags *flags, va_list args);
 
 // convert.c
+int			print_unsigned(t_flags *flags, unsigned int nb);
 int			print_convert(t_flags *flags, va_list args, char c);
 
 // convert_print.c
-int			print_nb(t_flags *flags, long long nb);
+int			print_nb(t_flags *flags, long nb);
 int			print_char(t_flags *flags, int c);
 int			print_str(t_flags *flags, char *str);
 int			print_hexa(t_flags *flags, long long nb, char c);

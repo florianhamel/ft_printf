@@ -1,28 +1,39 @@
 #include "ft_printf.h"
 
-int	print_nb(t_flags *flags, long long nb)
+int print_nb(t_flags *flags, long nb)
 {
-	long long	len_nb;
-	long long	ret;
+	int	len_nb;
+	int	ret;
 
-	len_nb = get_len_nb(nb, 10);
-	ret = 0;
+	flags->dot = (flags->nb2 < 0 ? 0 : flags->dot);
 	nb1_negative(flags);
+	len_nb = (!(flags->dot && nb == 0 && flags->nb2 == 0) ?
+	get_len_nb(nb, 10) : 0);
+	ret = 0;
 	if (!flags->rev)
 	{
 		if (flags->dot)
 			ret += print_spaces(flags->nb1 - max(len_nb, flags->nb2));
-		print_zeros(flags->nb2 - len_nb);
-		if (flags->zero && !flags->dot)
-			ret +=print_zeros(flags->nb1 - len_nb);
-		if (!flags->zero && !flags->dot)
+		if (!flags->dot && !flags->zero)
 			ret += print_spaces(flags->nb1 - len_nb);
-		ret += putnbr_len(nb);
+		if ((nb < 0 && flags->nb2 >= len_nb) ||
+		(nb < 0 && flags->zero && !flags->dot && flags->nb1 >= len_nb))
+			ret += putchar_len('-');
+		if (flags->zero && !flags->dot)
+			ret += print_zeros(flags->nb1 - len_nb);
+		ret += (nb < 0 ? print_zeros(flags->nb2 - len_nb + 1) :
+		print_zeros(flags->nb2 - len_nb));
+		if ((nb < 0 && flags->nb2 >= len_nb) ||
+		(nb < 0 && flags->zero && !flags->dot && flags->nb1 >= len_nb))
+			nb = -nb;
+		if  (!(flags->dot && nb == 0 && flags->nb2 == 0))
+			ret += putnbr_len(nb);
 	}
 	else
 	{
 		ret += print_zeros(flags->nb2 - len_nb);
-		ret += putnbr_len(nb);
+		if  (!(flags->dot && nb == 0 && flags->nb2 == 0))
+			ret += putnbr_len(nb);
 		ret += print_spaces(flags->nb1 - max(len_nb, flags->nb2));
 	}
 	return (ret);
@@ -45,16 +56,16 @@ int	print_char(t_flags *flags, int c)
 int	print_str(t_flags *flags, char *str)
 {
 	int		len_str;
-	char	*null_str;
 	int		ret;
 
-	null_str = "(null)";
 	ret = 0;
 	nb1_negative(flags);
 	if (!str)
-		str = null_str;
-	len_str = (flags->dot && flags->nb2 > 0 ?
-	min(ft_strlen(str), flags->nb2) : ft_strlen(str));
+		str = "(null)";
+	if (flags->dot && flags->nb2 >= 0)
+		len_str = min(ft_strlen(str), flags->nb2);
+	else
+		len_str = ft_strlen(str);
 	if (!flags->rev)
 		ret += print_spaces(flags->nb1 - len_str);
 	ret += putstr_len(str, len_str);
@@ -65,27 +76,31 @@ int	print_str(t_flags *flags, char *str)
 
 int	print_hexa(t_flags *flags, long long nb, char c)
 {
-	long long	len_nb;
+	int			len_nb;
 	long long	ret;
 
-	len_nb = get_len_nb(nb, 16);
-	ret = 0;
+	flags->dot = (flags->nb2 < 0 ? 0 : flags->dot);
 	nb1_negative(flags);
+	len_nb = (!(flags->dot && nb == 0 && flags->nb2 == 0) ?
+	get_len_nb(nb, 16) : 0);
+	ret = 0;
 	if (!flags->rev)
 	{
 		if (flags->dot)
 			ret += print_spaces(flags->nb1 - max(len_nb, flags->nb2));
-		print_zeros(flags->nb2 - len_nb);
-		if (flags->zero && !flags->dot)
-			ret +=print_zeros(flags->nb1 - len_nb);
-		if (!flags->zero && !flags->dot)
+		else if (!flags->dot && !flags->zero)
 			ret += print_spaces(flags->nb1 - len_nb);
-		ret += puthexa_len(nb, c);
+		ret += print_zeros(flags->nb2 - len_nb);
+		if (flags->zero && !flags->dot)
+			ret += print_zeros(flags->nb1 - len_nb);
+		if  (!(flags->dot && nb == 0 && flags->nb2 == 0))
+			ret += puthexa_len(nb, c);	
 	}
 	else
 	{
 		ret += print_zeros(flags->nb2 - len_nb);
-		ret += puthexa_len(nb, c);
+		if  (!(flags->dot && nb == 0 && flags->nb2 <= 0))
+			ret += puthexa_len(nb, c);
 		ret += print_spaces(flags->nb1 - max(len_nb, flags->nb2));
 	}
 	return (ret);
