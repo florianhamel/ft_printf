@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fhamel <fhamel@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/22 11:19:41 by fhamel            #+#    #+#             */
+/*   Updated: 2020/01/22 11:20:37 by fhamel           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int		is_convert(char c)
@@ -15,7 +27,6 @@ int		is_convert(char c)
 	convert_dic[7] = 'X';
 	convert_dic[8] = '%';
 	convert_dic[9] = '\0';
-	
 	i = 0;
 	while (convert_dic[i])
 	{
@@ -50,7 +61,7 @@ int		get_len_nb(long long nb, int base)
 {
 	int			len;
 	long long	pow;
-	
+
 	len = 0;
 	pow = 1;
 	if (nb < 0)

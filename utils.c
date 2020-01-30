@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fhamel <fhamel@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/22 11:14:48 by fhamel            #+#    #+#             */
+/*   Updated: 2020/01/22 11:15:28 by fhamel           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int		ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
 	int i;
 
@@ -10,13 +22,13 @@ int		ft_strlen(char *str)
 	return (i);
 }
 
-int		putchar_len(char c)
+int	putchar_len(char c)
 {
 	write(1, &c, 1);
 	return (1);
 }
 
-int		putstr_len(char *str, int n)
+int	putstr_len(char *str, int n)
 {
 	int	i;
 
@@ -31,7 +43,7 @@ int		putstr_len(char *str, int n)
 	return (i);
 }
 
-int		putnbr_len(long long nb)
+int	putnbr_len(long long nb)
 {
 	long long	pow_ten;
 	int			ret;
@@ -70,7 +82,7 @@ int	puthexa_len(long long nb, char c)
 	while (pow_16)
 	{
 		ret += putchar_len(base[nb / pow_16]);
-		nb -= (nb / pow_16) * pow_16; 
+		nb -= (nb / pow_16) * pow_16;
 		pow_16 /= 16;
 	}
 	return (ret);

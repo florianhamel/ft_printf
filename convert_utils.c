@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fhamel <fhamel@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/22 11:21:23 by fhamel            #+#    #+#             */
+/*   Updated: 2020/01/22 11:22:03 by fhamel           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int		max(int a, int b)
@@ -23,7 +35,7 @@ void	nb1_negative(t_flags *flags)
 	}
 }
 
-int		print_zeros(int	n)
+int		print_zeros(int n)
 {
 	int	ret;
 	int	i;
