@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flags.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhamel <fhamel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: florianhamel <florianhamel@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 11:17:54 by fhamel            #+#    #+#             */
-/*   Updated: 2020/01/22 11:18:02 by fhamel           ###   ########.fr       */
+/*   Updated: 2020/02/05 11:43:50 by florianhame      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,6 @@ void	fill_flags(char *str, t_flags *flags, va_list args)
 	int i;
 
 	i = 0;
-	if (str[i] == '%')
-	{
-		flags->percent = 1;
-		return ;
-	}
 	if (str[i] == '-' || str[i] == '0')
 	{
 		flags->rev = (str[i] == '-' ? 1 : 0);

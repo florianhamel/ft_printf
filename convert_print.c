@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_print.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhamel <fhamel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: florianhamel <florianhamel@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 11:22:34 by fhamel            #+#    #+#             */
-/*   Updated: 2020/01/30 11:28:28 by fhamel           ###   ########.fr       */
+/*   Updated: 2020/02/10 23:33:25 by florianhame      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,14 @@ int	print_nb(t_flags *flags, long nb)
 		ret += print_nb_no_rev(flags, nb, len_nb);
 	else
 	{
-		ret += print_zeros(flags->nb2 - len_nb);
+		if (flags->dot && nb < 0)
+			ret += putchar_len('-');
+		ret += print_zeros(flags->nb2 -
+		(flags->dot && nb < 0 ? len_nb - 1 : len_nb));
 		if (!(flags->dot && nb == 0 && flags->nb2 == 0))
-			ret += putnbr_len(nb);
-		ret += print_spaces(flags->nb1 - max(len_nb, flags->nb2));
+			ret += putnbr_len((flags->dot && nb < 0 ? -nb : nb));
+		ret += print_spaces(flags->nb1 - max(len_nb, 
+		(nb < 0 ? flags->nb2 + 1 : flags->nb2)));
 	}
 	return (ret);
 }
@@ -97,12 +101,15 @@ int	print_ptr(t_flags *flags, void *ptr)
 	int			ret;
 
 	len = get_len_nb((long long)ptr, 16) + 2;
+	if (ptr == NULL && flags->dot)
+		len--;
 	ret = 0;
 	nb1_negative(flags);
 	if (!flags->rev)
 		ret += print_spaces(flags->nb1 - len);
 	ret += putstr_len("0x", 2);
-	ret += puthexa_len((long long)ptr, 'x');
+	if (ptr != NULL || !flags->dot)
+		ret += puthexa_len((long long)ptr, 'x');
 	if (flags->rev)
 		ret += print_spaces(flags->nb1 - len);
 	return (ret);

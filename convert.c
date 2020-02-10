@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhamel <fhamel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: florianhamel <florianhamel@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 11:17:13 by fhamel            #+#    #+#             */
-/*   Updated: 2020/01/22 11:17:30 by fhamel           ###   ########.fr       */
+/*   Updated: 2020/02/05 11:43:57 by florianhame      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ int	print_convert(t_flags *flags, va_list args, char c)
 		return (print_hexa(flags, va_arg(args, long long), c));
 	if (c == 'p')
 		return (print_ptr(flags, va_arg(args, void*)));
-	return (putchar_len('%'));
+	return (print_percent(flags));
 }

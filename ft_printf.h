@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhamel <fhamel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: florianhamel <florianhamel@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 11:18:27 by fhamel            #+#    #+#             */
-/*   Updated: 2020/01/30 12:46:30 by fhamel           ###   ########.fr       */
+/*   Updated: 2020/02/05 11:34:55 by florianhame      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int				print_ptr(t_flags *flags, void *ptr);
 */
 int				print_nb_no_rev(t_flags *flags, long nb, int len_nb);
 int				print_hexa_no_rev(t_flags *flags, long nb, int len_nb, char c);
+int				print_percent(t_flags *flags);
 
 /*
 ** convert_utils.c
