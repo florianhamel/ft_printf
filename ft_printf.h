@@ -6,7 +6,7 @@
 /*   By: florianhamel <florianhamel@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 11:18:27 by fhamel            #+#    #+#             */
-/*   Updated: 2020/02/05 11:34:55 by florianhame      ###   ########.fr       */
+/*   Updated: 2020/03/02 17:09:39 by florianhame      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int				ft_strlen(char *str);
 int				putchar_len(char c);
 int				putstr_len(char *str, int n);
 int				putnbr_len(long long nb);
-int				puthexa_len(long long nb, char c);
+int				puthexa_len(unsigned long nb, char c);
 
 /*
 ** ft_atoi.c
@@ -76,7 +76,7 @@ int				print_convert(t_flags *flags, va_list args, char c);
 int				print_nb(t_flags *flags, long nb);
 int				print_char(t_flags *flags, int c);
 int				print_str(t_flags *flags, char *str);
-int				print_hexa(t_flags *flags, long long nb, char c);
+int				print_hexa(t_flags *flags, unsigned nb, char c);
 int				print_ptr(t_flags *flags, void *ptr);
 
 /*

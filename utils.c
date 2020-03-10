@@ -6,7 +6,7 @@
 /*   By: florianhamel <florianhamel@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 11:14:48 by fhamel            #+#    #+#             */
-/*   Updated: 2020/02/10 23:21:53 by florianhame      ###   ########.fr       */
+/*   Updated: 2020/03/02 17:08:54 by florianhame      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	putnbr_len(long long nb)
 	return (ret);
 }
 
-int	puthexa_len(long long nb, char c)
+int	puthexa_len(unsigned long nb, char c)
 {
 	char		*base;
 	long long	pow_16;

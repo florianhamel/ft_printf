@@ -6,7 +6,7 @@
 /*   By: florianhamel <florianhamel@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 11:22:34 by fhamel            #+#    #+#             */
-/*   Updated: 2020/02/10 23:33:25 by florianhame      ###   ########.fr       */
+/*   Updated: 2020/03/02 17:14:28 by florianhame      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	print_str(t_flags *flags, char *str)
 	return (ret);
 }
 
-int	print_hexa(t_flags *flags, long long nb, char c)
+int	print_hexa(t_flags *flags, unsigned nb, char c)
 {
 	int			len_nb;
 	long long	ret;
@@ -109,7 +109,7 @@ int	print_ptr(t_flags *flags, void *ptr)
 		ret += print_spaces(flags->nb1 - len);
 	ret += putstr_len("0x", 2);
 	if (ptr != NULL || !flags->dot)
-		ret += puthexa_len((long long)ptr, 'x');
+		ret += puthexa_len((unsigned long)ptr, 'x');
 	if (flags->rev)
 		ret += print_spaces(flags->nb1 - len);
 	return (ret);
