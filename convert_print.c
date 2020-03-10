@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_print.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florianhamel <florianhamel@student.42.f    +#+  +:+       +#+        */
+/*   By: fhamel <fhamel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 11:22:34 by fhamel            #+#    #+#             */
-/*   Updated: 2020/03/02 17:14:28 by florianhame      ###   ########.fr       */
+/*   Updated: 2020/03/10 12:32:46 by fhamel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	print_nb(t_flags *flags, long nb)
 		(flags->dot && nb < 0 ? len_nb - 1 : len_nb));
 		if (!(flags->dot && nb == 0 && flags->nb2 == 0))
 			ret += putnbr_len((flags->dot && nb < 0 ? -nb : nb));
-		ret += print_spaces(flags->nb1 - max(len_nb, 
+		ret += print_spaces(flags->nb1 - max(len_nb,
 		(nb < 0 ? flags->nb2 + 1 : flags->nb2)));
 	}
 	return (ret);
