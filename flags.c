@@ -6,7 +6,7 @@
 /*   By: florianhamel <florianhamel@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 11:17:54 by fhamel            #+#    #+#             */
-/*   Updated: 2020/02/05 11:43:50 by florianhame      ###   ########.fr       */
+/*   Updated: 2020/03/10 11:35:13 by florianhame      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	fill_flags(char *str, t_flags *flags, va_list args)
 		flags->zero = (str[i] == '0' ? 1 : 0);
 		i++;
 	}
+	while (str[i] == '-' || str[i] == '0')
+		i++;
 	flags->nb1 = get_nb_convert(&str[i], args);
 	while (!is_convert(str[i]) && str[i] != '.')
 		i++;
